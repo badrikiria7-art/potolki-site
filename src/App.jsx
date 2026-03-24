@@ -491,7 +491,7 @@ export default function PotolkiLanding() {
       </header>
 
       <main id="top" className="relative z-10 pt-28">
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 md:pt-36 pb-20 md:pb-24">
+        <section className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8 pt-32 md:pt-36 pb-20 md:pb-24">
           <div className="grid items-center gap-14 lg:grid-cols-2">
             <div>
               <div className="fade-in-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
@@ -499,7 +499,7 @@ export default function PotolkiLanding() {
                 Потолки премиального уровня + дизайн + отделка под ключ
               </div>
 
-              <h1 className="fade-in-up fade-delay-1 mt-6 text-5xl sm:text-6xl xl:text-7xl font-semibold leading-[0.95] tracking-tight">
+              <h1 className="fade-in-up fade-delay-1 mt-4 text-5xl sm:text-5xl xl:text-6xl font-semibold leading-[0.95] tracking-tight">
                   Натяжные потолки в Краснодаре
                 <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-transparent">
                   монтаж за 1–3 дня без переделок
@@ -527,7 +527,7 @@ export default function PotolkiLanding() {
                 </a>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/55">
+              <div className="mt-8 flex flex-wrap gap-7 text-sm text-white/55">
                 <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Смета без хаоса</div>
                 <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Поддержка по проекту</div>
                 <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Работа в связке с дизайнером</div>
@@ -550,15 +550,19 @@ export default function PotolkiLanding() {
                       </div>
                     </div>
                     <div className="rounded-3xl border border-white/10 bg-[#0f1018] p-5">
-                      <div className="text-sm text-white/50">Что получит клиент</div>
+                      <div className="text-sm text-white/50">Что вы получите</div>
                       <div className="mt-4 space-y-4">
                         <div>
                           <div className="text-2xl font-semibold">1 заявка</div>
-                          <div className="text-sm text-white/60">и понятный маршрут под задачу объекта</div>
+                          <div className="text-sm text-white/60">Точный расчет стоимости за 15 минут и понятный план работ под ваш объект</div>
                         </div>
                         <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                        <div className="text-sm text-white/70 leading-7">
-                          Красивый современный интерфейс, акцент на визуал, доверие, заявки и кросс-продажу смежных услуг.
+                        <div className="text-sm text-white/90 leading-7">
+                        <div className="text-1xl font-semibold">✔ Без переделок</div>
+                        <div className="text-1xl font-semibold">✔ С учетом света и дизайна</div>
+                        <div className="text-1x1 font-semibold">✔ Монтаж от 1 дня</div>
+
+                          Работаем под ключ — от идеи до готового результата
                         </div>
                       </div>
                     </div>
@@ -570,9 +574,13 @@ export default function PotolkiLanding() {
                         <div className="mt-1 text-xl font-semibold">Один сайт для потолков, дизайна и отделки</div>
                       </div>
                       <a href="#lead" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-900 transition hover:scale-[1.03]">
-                        Оставить заявку
+                        Получить расчет
+
                         <ArrowRight className="h-4 w-4" />
                       </a>
+                      <div className="text-xs text-white/50 mt-2">
+                        Ответим в течение 5–10 минут
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -896,13 +904,13 @@ export default function PotolkiLanding() {
       <footer className="relative z-10 border-t border-white/10 bg-black/20">
         <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-5">
-            <div className="xl:col-span-2">
-              <div className="flex items-center gap-3">
+            <div className="xl:col-span-1">
+              <div className="flex items-center gap-2">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-violet-500">
                   <Home className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold">Ceiling Atelier</div>
+                  <div className="font-semibold">Мастерская потолков</div>
                   <div className="text-sm text-white/45">Потолки • Дизайн • Отделка</div>
                 </div>
               </div>
@@ -910,13 +918,32 @@ export default function PotolkiLanding() {
 
               </p>
               <div className="mt-6 flex items-center gap-3 text-white/55">
-                {[Instagram, Linkedin, Twitter, Github].map((Icon, idx) => (
-                  <a key={idx} href="#" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10">
-                    <Icon className="h-4 w-4" />
+                  <a
+                    href="https://instagram.com/potolki.atelier"
+                    target="_blank"
+                   rel="noopener noreferrer"
+                   className="w-10 h-10 flex items-center justify-center rounded-full border border-white/10 hover:bg-white/10 transition"
+                  >
+                    <Instagram size={18} />
                   </a>
-                ))}
+                  <a
+                    href="https://vk.com/ТВОЙ_НИК"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/10 hover:bg-white/10 transition"
+                  >
+                    <span className="text-sm font-bold">VK</span>
+                  </a>
+
               </div>
             </div>
+            <div className="flex justify-center items-center px-4">
+                <img
+                  src="/logo.png"
+                  alt="Потолки Краснодар"
+                   className="w-[160px] opacity-60 hover:scale-80 transition"
+               />
+               </div>
 
             <div>
               <div className="font-medium">Услуги</div>
