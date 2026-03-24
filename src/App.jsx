@@ -28,10 +28,34 @@ import {
 
 const CONTACT_PHONE = "+79189567240";
 const CONTACT_PHONE_VIEW = "+7 918 956-72-40";
-const TELEGRAM_LINK = "https://t.me/";
+const TELEGRAM_LINK = "https://t.me/+79189567240";
 const WHATSAPP_LINK = "https://wa.me/79189567240";
-const EMAIL = "mail@example.com";
+const EMAIL = "kiriabadri247@gmail.com";
+const BOT_TOKEN = "8759469430:AAG5MwbgT-jeUPfT_7iDjD6ijQPWrQxASVQ";
+const CHAT_ID = "1151861307";
 
+async function sendToTelegram(data) {
+  const text = `
+🔥 Новая заявка с сайта
+
+👤 Имя: ${data.name}
+📞 Телефон: ${data.phone}
+📌 Услуга: ${data.service}
+📝 Задача: ${data.message}
+
+🌐 Источник: сайт
+`;
+
+
+  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text,
+    }),
+  });
+}
 const navItems = [
   { label: "Услуги", href: "#services" },
   { label: "Работы", href: "#works" },
@@ -57,8 +81,8 @@ const works = [
 const features = [
   {
     icon: Layers3,
-    title: "Натяжные потолки под ключ",
-    text: "Теневой профиль, световые линии, карнизы, закладные, сложные узлы и чистый монтаж без хаоса на объекте.",
+    title: "Без переделок и сюрпризов",
+    text: "Сразу проектируем правильное решение под ваш интерьер и свет.",
   },
   {
     icon: PenTool,
@@ -88,7 +112,7 @@ const features = [
 ];
 
 const stats = [
-  { value: 200, suffix: "+", label: "реализованных помещений" },
+  { value: 1200, suffix: "+", label: "реализованных помещений" },
   { value: 98, suffix: "%", label: "объектов без срыва сроков" },
   { value: 7, suffix: " дней", label: "средний цикл монтажа" },
   { value: 24, suffix: "/7", label: "связь по проекту" },
@@ -135,27 +159,26 @@ const testimonials = [
 
 const pricing = [
   {
-    name: "Старт",
+    name: "Квартира",
     badge: "",
     priceMonth: "от 35 000 ₽",
     priceYear: "от 35 000 ₽",
-    description: "Базовый формат для стандартных объектов: чаще всего однокомнатная квартира с типовой конфигурацией потолков.",
+    description: "Идеально для стандартных помещений",
     features: [
-      "Стандартный монтаж потолков",
-      "Обычно от 30 000–35 000 ₽",
-      "Подходит для 1-комнатной квартиры",
+      "Быстрый монтаж",
+      "Чистая работа",
+      "Подходит для 1–2 комнат",
       "Типовые помещения без сложных решений",
     ],
   },
   {
-    name: "Оптимальный",
+    name: "Квартира + свет",
     badge: "Популярный",
-    priceMonth: "от 125 000 ₽",
-    priceYear: "от 125 000 ₽",
-    description: "Для более крупных объектов: несколько помещений, коридоры, балконы, освещение и дополнительные конструктивные решения.",
+    priceMonth: "от 90 000 ₽",
+    priceYear: "от 90 000 ₽",
+    description: "Световые решения и дизайн",
     features: [
-      "Несколько помещений в одном объекте",
-      "Коридоры и балконы",
+      "Световые линии",
       "Карнизы, свет, закладные",
       "Сопровождение по объекту",
       "Более сложная конфигурация потолков",
@@ -477,15 +500,16 @@ export default function PotolkiLanding() {
               </div>
 
               <h1 className="fade-in-up fade-delay-1 mt-6 text-5xl sm:text-6xl xl:text-7xl font-semibold leading-[0.95] tracking-tight">
-                Пространства, где
+                  Натяжные потолки в Краснодаре
                 <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-transparent">
-                  потолок становится частью дизайна
+                  монтаж за 1–3 дня без переделок
                 </span>
               </h1>
 
               <p className="fade-in-up fade-delay-2 mt-6 max-w-2xl text-lg md:text-xl leading-8 text-white/70">
-                Современные натяжные потолки, теневой профиль, световые линии, скрытые карнизы,
-                дизайн-проект и отделка под ключ — в одном понятном маршруте для клиента.
+                Световые линии, теневые профили, скрытые карнизы.
+                Рассчитаем стоимость за 15 минут и предложим лучшее решение под ваш интерьер.
+
               </p>
 
               <div className="fade-in-up fade-delay-3 mt-8 flex flex-col sm:flex-row gap-4">
@@ -561,18 +585,18 @@ export default function PotolkiLanding() {
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
-                title: "Потолки",
-                text: "Теневой профиль, карнизы, линии, закладные, нестандартные узлы и чистая реализация.",
+                title: "Натяжные потолки",
+                text: "Установка потолков любой сложности: световые линии, карнизы, скрытый свет",
                 icon: Layers3,
               },
               {
-                title: "Дизайн-проект",
-                text: "Визуальная концепция, свет, материалы, логика пространства и проектные решения для реализации.",
+                title: "Дизайн потолка",
+                text: "Подберём решение под интерьер, чтобы выглядело дорого и современно",
                 icon: Palette,
               },
               {
-                title: "Отделка под ключ",
-                text: "Если нужен не только потолок, подключаем команду по ремонту и ведению объекта комплексно.",
+                title: "Под ключ",
+                text: "Полное ведение объекта: потолки, свет, решения, координация",
                 icon: Hammer,
               },
             ].map((card) => {
@@ -597,7 +621,7 @@ export default function PotolkiLanding() {
             <div className="text-sm uppercase tracking-[0.2em] text-cyan-300/80">Преимущества</div>
             <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">Сайт, который продаёт не только потолки, а доверие к реализации объекта</h2>
             <p className="mt-5 text-lg leading-8 text-white/65">
-              Строим подачу так, чтобы человек видел визуальный уровень, понимал логику услуг и мог оставить заявку на нужный формат работы.
+
             </p>
           </div>
 
@@ -670,7 +694,7 @@ export default function PotolkiLanding() {
               <div className="text-sm uppercase tracking-[0.2em] text-cyan-300/80">Отзывы</div>
               <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">Когда проект выглядит дороже, чем ожидали</h2>
             </div>
-            <div className="text-white/60 max-w-xl">Отзывы можно заменить на реальные кейсы, фото объектов и комментарии клиентов или дизайнеров.</div>
+            <div className="text-white/60 max-w-xl"></div>
           </div>
 
           <div className="mt-12 grid gap-5 lg:grid-cols-3 overflow-x-auto">
@@ -788,44 +812,73 @@ export default function PotolkiLanding() {
             <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
               <div>
                 <div className="text-sm uppercase tracking-[0.2em] text-cyan-200/90">Оставить заявку</div>
-                <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">Расскажите о задаче — предложим лучший формат реализации</h2>
+                <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">Рассчитаем стоимость потолка за 15 минут</h2>
                 <p className="mt-5 max-w-2xl text-lg leading-8 text-white/70">
-                  Оставьте контакты и выберите направление: потолки, дизайн-проект или отделка под ключ. Это может быть один формат или комплексное решение.
+                  Оставьте заявку — свяжемся, уточним задачу и предложим лучшее решение.
                 </p>
               </div>
 
-              <form className="rounded-[28px] border border-white/10 bg-[#0d0e16]/70 p-6 backdrop-blur-xl space-y-4">
-                <input
-                  type="text"
-                  placeholder="Ваше имя"
-                  className="min-h-[44px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-cyan-300/40"
-                />
-                <input
-                  type="tel"
-                  placeholder="Телефон"
-                  className="min-h-[44px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-cyan-300/40"
-                />
-                <select className="min-h-[44px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-cyan-300/40">
-                  <option className="text-slate-900">Натяжные потолки</option>
-                  <option className="text-slate-900">Дизайн-проект</option>
-                  <option className="text-slate-900">Отделка под ключ</option>
-                  <option className="text-slate-900">Нужен комплексный расчёт</option>
-                </select>
-                <textarea
-                  placeholder="Кратко опишите задачу"
-                  rows={4}
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-cyan-300/40"
-                />
-                <button
-                  type="button"
-                  className="btn-hover min-h-[44px] w-full rounded-2xl bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-3.5 font-medium text-white transition"
-                >
-                  Отправить заявку
-                </button>
-                <div className="text-xs leading-5 text-white/45">
-                  Здесь можно подключить отправку заявок в Telegram, WhatsApp, e-mail или CRM.
-                </div>
-              </form>
+              <form
+                 className="rounded-[28px] border border-white/10 bg-[#0d0e16]/70 p-6 backdrop-blur-xl space-y-4"
+                 onSubmit={async (e) => {
+                 e.preventDefault();
+
+                   const formData = new FormData(e.target);
+
+                   const data = {
+                       name: formData.get("name"),
+                       phone: formData.get("phone"),
+                       service: formData.get("service"),
+                       message: formData.get("message"),
+                     };
+
+                     await sendToTelegram(data);
+
+                     alert("Заявка отправлена");
+                     e.target.reset();
+                     }}
+                   >
+                     <input
+                       type="text"
+                       name="name"
+                       placeholder="Ваше имя"
+                       className="min-h-[44px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-cyan-300/40"
+                     />
+
+                     <input
+                       type="tel"
+                       name="phone"
+                       placeholder="Телефон"
+                       className="min-h-[44px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-cyan-300/40"
+                    />
+
+                     <select
+                       name="service"
+                       className="min-h-[44px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-cyan-300/40"
+                     >
+                       <option className="text-slate-900">Натяжные потолки</option>
+                       <option className="text-slate-900">Дизайн</option>
+                       <option className="text-slate-900">Отделка</option>
+                     </select>
+
+                     <textarea
+                       name="message"
+                       placeholder="Опишите задачу"
+                       rows={4}
+                       className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-cyan-300/40"
+                     />
+
+                     <button
+                       type="submit"
+                       className="btn-hover min-h-[44px] w-full rounded-2xl bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-3.5 font-medium text-white transition"
+                     >
+                       Отправить заявку
+                     </button>
+
+                     <div className="text-xs leading-5 text-white/45">
+                       Ответим в течение 5 минут
+                    </div>
+                  </form>
             </div>
           </div>
         </section>
@@ -854,7 +907,7 @@ export default function PotolkiLanding() {
                 </div>
               </div>
               <p className="mt-5 max-w-md text-white/60 leading-7">
-                Современный лендинг для натяжных потолков с возможностью получать заявки не только на потолки, но и на дизайн-проект и отделку под ключ.
+
               </p>
               <div className="mt-6 flex items-center gap-3 text-white/55">
                 {[Instagram, Linkedin, Twitter, Github].map((Icon, idx) => (
@@ -899,7 +952,7 @@ export default function PotolkiLanding() {
 
           <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
             <div>© 2026 Ceiling Atelier. Все права защищены.</div>
-            <div>Фото нужно положить в папку public/works/: work1.jpg ... work9.jpg. Почту и Telegram-ссылку можно поменять вверху файла в 1 месте.</div>
+            <div></div>
           </div>
         </div>
       </footer>
