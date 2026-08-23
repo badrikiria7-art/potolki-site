@@ -31,30 +31,17 @@ const CONTACT_PHONE_VIEW = "+7 918 956-72-40";
 const TELEGRAM_LINK = "https://t.me/+79189567240";
 const WHATSAPP_LINK = "https://wa.me/79189567240";
 const EMAIL = "kiriabadri247@gmail.com";
-const BOT_TOKEN = "8759469430:AAG5MwbgT-jeUPfT_7iDjD6ijQPWrQxASVQ";
-const CHAT_ID = "1151861307";
 
-async function sendToTelegram(data) {
-  const text = `
-🔥 Новая заявка с сайта
-
-👤 Имя: ${data.name}
-📞 Телефон: ${data.phone}
-📌 Услуга: ${data.service}
-📝 Задача: ${data.message}
-
-🌐 Источник: сайт
-`;
-
-
-  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+async function sendLead(data) {
+  const response = await fetch("/api/telegram", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text,
-    }),
+    body: JSON.stringify(data),
   });
+
+  if (!response.ok) {
+    throw new Error("Не удалось отправить заявку");
+  }
 }
 const navItems = [
   { label: "Услуги", href: "#services" },
@@ -76,6 +63,10 @@ const works = [
   { img: "/works/work7.jpg", title: "Потолок с контурной LED-подсветкой" },
   { img: "/works/work8.jpg", title: "Скрытая периметральная подсветка в коридоре" },
   { img: "/works/work9.jpg", title: "Световые линии в современном интерьере" },
+  { img: "/works/photo_2026-08-23_13-08-31.jpg", title: "Сложный натяжной потолок тёмного цвета с фигурным периметром" },
+  { img: "/works/photo_2026-08-23_13-08-43.jpg", title: "Процесс монтажа двухуровневого натяжного потолка" },
+  { img: "/works/photo_2026-08-23_13-08-46.jpg", title: "Глянцевый натяжной потолок с контурной подсветкой" },
+  { img: "/works/photo_2026-08-23_13-08-54.jpg", title: "Матовый натяжной потолок со встроенным и подвесным освещением" },
 ];
 
 const features = [
@@ -341,7 +332,7 @@ function WorksSection() {
       <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {works.map((work, index) => (
           <div key={index} className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl">
-            <img src={work.img} alt={work.title} className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-110" style={{ filter: "contrast(1.06) saturate(1.08) brightness(0.92)" }} />
+            <img src={work.img} alt={work.title} loading="lazy" className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-110" style={{ filter: "contrast(1.06) saturate(1.08) brightness(0.92)" }} />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90" />
             <div className="absolute inset-x-0 bottom-0 p-6">
               <div className="inline-flex rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs text-white/70 backdrop-blur-md">Проект {index + 1}</div>
@@ -359,6 +350,7 @@ export default function PotolkiLanding() {
   const [scrolled, setScrolled] = useState(false);
   const [yearly, setYearly] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const [formStatus, setFormStatus] = useState("idle");
   const reveal = useReveal();
 
   useEffect(() => {
@@ -829,7 +821,9 @@ export default function PotolkiLanding() {
               <form
                  className="rounded-[28px] border border-white/10 bg-[#0d0e16]/70 p-6 backdrop-blur-xl space-y-4"
                  onSubmit={async (e) => {
-                 e.preventDefault();
+                   e.preventDefault();
+
+                   if (formStatus === "sending") return;
 
                    const formData = new FormData(e.target);
 
@@ -840,16 +834,22 @@ export default function PotolkiLanding() {
                        message: formData.get("message"),
                      };
 
-                     await sendToTelegram(data);
+                   setFormStatus("sending");
 
-                     alert("Заявка отправлена");
+                   try {
+                     await sendLead(data);
+                     setFormStatus("success");
                      e.target.reset();
-                     }}
+                   } catch {
+                     setFormStatus("error");
+                   }
+                 }}
                    >
                      <input
                        type="text"
                        name="name"
                        placeholder="Ваше имя"
+                       required
                        className="min-h-[44px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-cyan-300/40"
                      />
 
@@ -857,6 +857,7 @@ export default function PotolkiLanding() {
                        type="tel"
                        name="phone"
                        placeholder="Телефон"
+                       required
                        className="min-h-[44px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-cyan-300/40"
                     />
 
@@ -878,14 +879,17 @@ export default function PotolkiLanding() {
 
                      <button
                        type="submit"
+                       disabled={formStatus === "sending"}
                        className="btn-hover min-h-[44px] w-full rounded-2xl bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-3.5 font-medium text-white transition"
                      >
-                       Отправить заявку
+                       {formStatus === "sending" ? "Отправляем..." : "Отправить заявку"}
                      </button>
 
-                     <div className="text-xs leading-5 text-white/45">
-                       Ответим в течение 5 минут
-                    </div>
+                     <div className="text-xs leading-5 text-white/45" aria-live="polite">
+                       {formStatus === "success" && "Заявка отправлена"}
+                       {formStatus === "error" && "Не удалось отправить заявку. Попробуйте ещё раз."}
+                       {(formStatus === "idle" || formStatus === "sending") && "Ответим в течение 5 минут"}
+                     </div>
                   </form>
             </div>
           </div>
