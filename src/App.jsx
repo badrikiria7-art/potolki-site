@@ -448,7 +448,7 @@ export default function PotolkiLanding() {
             </div>
 
             <button
-              className="lg:hidden flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5"
+              className="xl:hidden flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5"
               onClick={() => setMenuOpen((s) => !s)}
               aria-label="Открыть меню"
             >
@@ -458,7 +458,7 @@ export default function PotolkiLanding() {
         </div>
 
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-96 border-t border-white/10 bg-[#0b0b13]/95 backdrop-blur-xl" : "max-h-0"}`}
+          className={`xl:hidden transition-all duration-300 ${menuOpen ? "max-h-[calc(100vh-72px)] overflow-y-auto border-t border-white/10 bg-[#0b0b13]/95 backdrop-blur-xl" : "max-h-0 overflow-hidden"}`}
         >
           <div className="px-4 py-4 space-y-2">
             {navItems.map((item) => (
@@ -482,34 +482,33 @@ export default function PotolkiLanding() {
         </div>
       </header>
 
-      <main id="top" className="relative z-10 pt-28">
-        <section className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8 pt-32 md:pt-36 pb-20 md:pb-24">
-          <div className="grid items-center gap-14 lg:grid-cols-2">
+      <main id="top" className="relative z-10 pt-20 md:pt-24">
+        <section className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 lg:pt-14 pb-16 md:pb-20">
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
-              <div className="fade-in-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
                 <Sparkles className="h-4 w-4 text-cyan-300" />
-                Потолки премиального уровня + дизайн + отделка под ключ
+                Краснодар • Бесплатный замер
               </div>
 
-              <h1 className="fade-in-up fade-delay-1 mt-4 text-5xl sm:text-5xl xl:text-6xl font-semibold leading-[0.95] tracking-tight">
-                  Натяжные потолки в Краснодаре
+              <h1 className="mt-4 text-4xl sm:text-5xl xl:text-6xl font-semibold leading-[1.02] sm:leading-[0.98] tracking-tight">
+                Натяжные потолки в Краснодаре
                 <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-transparent">
-                  монтаж за 1–3 дня без переделок
+                  Монтаж от 700 ₽/м² с материалом
                 </span>
               </h1>
 
-              <p className="fade-in-up fade-delay-2 mt-6 max-w-2xl text-lg md:text-xl leading-8 text-white/70">
-                Световые линии, теневые профили, скрытые карнизы.
-                Рассчитаем стоимость за 15 минут и предложим лучшее решение под ваш интерьер.
-
+              <p className="mt-5 max-w-2xl text-base sm:text-lg md:text-xl leading-7 md:leading-8 text-white/70">
+                Стартовая цена для базового решения. Световые линии, теневые профили,
+                скрытые карнизы и сложные конструкции рассчитываются после замера.
               </p>
 
-              <div className="fade-in-up fade-delay-3 mt-8 flex flex-col sm:flex-row gap-4">
+              <div className="mt-6 flex flex-col sm:flex-row gap-4">
                 <a
                   href="#lead"
                   className="btn-hover min-h-[44px] rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-6 py-3.5 font-medium text-white transition"
                 >
-                  Получить расчёт
+                  Рассчитать проект
                 </a>
                 <a
                   href="#works"
@@ -519,10 +518,10 @@ export default function PotolkiLanding() {
                 </a>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-7 text-sm text-white/55">
-                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Смета без хаоса</div>
-                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Поддержка по проекту</div>
-                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Работа в связке с дизайнером</div>
+              <div className="mt-6 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/55">
+                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Бесплатный замер</div>
+                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Цена с материалом</div>
+                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" />Расчёт под ваш проект</div>
               </div>
             </div>
 
@@ -545,16 +544,16 @@ export default function PotolkiLanding() {
                       <div className="text-sm text-white/50">Что вы получите</div>
                       <div className="mt-4 space-y-4">
                         <div>
-                          <div className="text-2xl font-semibold">1 заявка</div>
-                          <div className="text-sm text-white/60">Точный расчет стоимости за 15 минут и понятный план работ под ваш объект</div>
+                          <div className="text-2xl font-semibold">Бесплатный замер</div>
+                          <div className="text-sm text-white/60">Уточним размеры, материалы, освещение и сложность конструкции</div>
                         </div>
                         <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                         <div className="text-sm text-white/90 leading-7">
-                        <div className="text-1xl font-semibold">✔ Без переделок</div>
-                        <div className="text-1xl font-semibold">✔ С учетом света и дизайна</div>
-                        <div className="text-1x1 font-semibold">✔ Монтаж от 1 дня</div>
+                        <div className="text-1xl font-semibold">✔ Базовое решение от 700 ₽/м²</div>
+                        <div className="text-1xl font-semibold">✔ Материал включён в стартовую цену</div>
+                        <div className="text-1x1 font-semibold">✔ Сложные решения — по расчёту</div>
 
-                          Работаем под ключ — от идеи до готового результата
+                          Рассчитаем итоговую стоимость после замера
                         </div>
                       </div>
                     </div>
@@ -562,17 +561,14 @@ export default function PotolkiLanding() {
                   <div className="mt-4 rounded-3xl border border-cyan-400/20 bg-gradient-to-r from-cyan-400/10 to-violet-500/10 p-5">
                     <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                       <div>
-                        <div className="text-sm text-cyan-200/80">Ключевая идея сайта</div>
-                        <div className="mt-1 text-xl font-semibold">Один сайт для потолков, дизайна и отделки</div>
+                        <div className="text-sm text-cyan-200/80">Натяжные потолки под ключ</div>
+                        <div className="mt-1 text-xl font-semibold">Бесплатный замер в Краснодаре</div>
                       </div>
                       <a href="#lead" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-900 transition hover:scale-[1.03]">
-                        Получить расчет
+                        Рассчитать проект
 
                         <ArrowRight className="h-4 w-4" />
                       </a>
-                      <div className="text-xs text-white/50 mt-2">
-                        Ответим в течение 5–10 минут
-                      </div>
                     </div>
                   </div>
                 </div>
